@@ -1,0 +1,100 @@
+
+                  Product
+get: http://localhost:4000/api/product/
+get: http://localhost:4000/api/product/:id
+post: http://localhost:4000/api/product/
+put: http://localhost:4000/api/product/:id
+put: http://localhost:4000/api/product/image/:id
+delete: http://localhost:4000/api/product/:id
+Schema:{
+  title,category,tags,price,productId,stockBy,stock,productImage
+}
+
+                  Category
+get: http://localhost:4000/api/product-category/
+get: http://localhost:4000/api/product-category/:id
+post: http://localhost:4000/api/product-category/
+put: http://localhost:4000/api/product-category/:id
+delete: http://localhost:4000/api/product-category/:id
+Schema:{name,subCategories}
+
+                  Manager
+post: http://localhost:4000/api/manager/login
+get: http://localhost:4000/api/manager/
+get: http://localhost:4000/api/manager/:id
+get: http://localhost:4000/api/manager/profile/me
+post: http://localhost:4000/api/manager/signup
+put: http://localhost:4000/api/manager/:id
+put: http://localhost:4000/api/manager/access/:id
+delete: http://localhost:4000/api/manager/:id
+Schema:{
+  name,email,userName,position,password,
+  access:{
+    isBlock,addManager,managers,addProducts,products,categories,subCategories,users,workflow,settings,orders
+  }
+}
+
+
+                User
+post: http://localhost:4000/api/user/login
+get: http://localhost:4000/api/user/
+get: http://localhost:4000/api/user/:id
+get: http://localhost:4000/api/user/profile/me
+post: http://localhost:4000/api/user/signup
+put: http://localhost:4000/api/user/:id
+delete: http://localhost:4000/api/user/:id
+Schema:{
+  firstName,lastName,email,phone,address,password
+}
+
+
+
+                Carts
+get: http://localhost:4000/api/carts/
+get: http://localhost:4000/api/carts/:id
+post: http://localhost:4000/api/carts/
+put: http://localhost:4000/api/carts/:id
+delete: http://localhost:4000/api/carts/:id
+Schema:{
+  ownar,total,
+  items:[{
+    item,quantity,price
+  }],
+  orders:[{
+    item,quntity,price,isStage,time
+  }]
+}
+
+                Worflow
+GetAll: http://localhost:4000/api/workflow/
+Post: http://localhost:4000/api/workflow/
+Delete: http://localhost:4000/api/workflow/:id
+Schema:{
+  manager,time,product
+}
+                User Cart
+get: http://localhost:4000/api/cart/
+post: http://localhost:4000/api/cart/
+post: http://localhost:4000/api/cart/order
+post: http://localhost:4000/api/cart/order/delete
+put: http://localhost:4000/api/cart/
+Delete: http://localhost:4000/api/cart/:id
+
+
+                Order
+get: http://localhost:4000/api/order/
+get: http://localhost:4000/api/order/:id
+get: http://localhost:4000/api/order/checkout/:id
+get: http://localhost:4000/api/order/:id
+schema:{
+  ownar,
+  order:{
+    item,quantity,price,isStage,time,orderId
+  }
+}
+
+                Subcategory
+get: http://localhost:4000/api/sub-category/
+post: http://localhost:4000/api/sub-category/:id
+put: http://localhost:4000/api/sub-category/:id
+delete: http://localhost:4000/api/sub-category/:id
