@@ -27,7 +27,7 @@ const routes = [
     component: ShopHome
   },
   {
-    path: '/products',
+    path: '/shop/products/:category',
     component: Products
   },
   {

@@ -1,18 +1,30 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect,useContext} from 'react'
 import ControlledEditor from './ControlledEditor';
-import { EditorState, convertToRaw } from 'draft-js';
+import { EditorState, ContentState, convertToRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import htmlToDraft from 'html-to-draftjs';
+import ReactHtmlParser from 'react-html-parser';
+import Axios from 'axios';
+import link from '../../../link'
+import {ShopContext} from '../../context/ShopContext';
 
+
+const updateProduct = async (id,up,setIsUp) => {
+  const res = await Axios.put(`${link}/api/product/${id}`,up);
+  setIsUp(true);
+  return res;
+}
 
 const EditProduct = (props) => {
-  const [title,setTitle] = useState('')
-  const [category,setCategory] = useState('');
-  const [price,setPrice] = useState('');
-  const [descountedPrice] = useState('');
-  const [image,setImage] = useState('');
-  const [editorState,setEditorState] = useState(EditorState.createEmpty())
-  const description = ReactHtmlParser(draftToHtml(convertToRaw(editorState.getCurrentContent())))
+  const context = useContext(ShopContext);
+  const [title,setTitle] = useState(props.title)
+  const [category,setCategory] = useState(props.category._id);
+  const [price,setPrice] = useState(props.price);
+  const blocksFromHtml = htmlToDraft(props.description);
+  const { contentBlocks, entityMap } = blocksFromHtml;
+  const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+
+  const [editorState,setEditorState] = useState(EditorState.createWithContent(contentState))
 
   const onEditorStateChange = (editorState) => {
     setEditorState(editorState);
@@ -20,66 +32,28 @@ const EditProduct = (props) => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log();
+    // const up = new FormData();
+    // up.append('title',title);
+    // up.append('category',category);
+    // up.append('price',price);
+    // up.append('description',draftToHtml(convertToRaw(editorState.getCurrentContent())))
+    const updated = updateProduct(props._id,{title,category,price,description: draftToHtml(convertToRaw(editorState.getCurrentContent()))},context.setIsUp);
   }
+
 
   return (
     <div className="col-md-8 my-3">
       <div className="card p-0 border-0 rounded-0">
         <div className="card-body">
-          <form>
-          <div className="form-group">
-            <label htmlFor="title">Title</label>
-            <input
-              className="form-control"
-              id="title"
-              type="text"
-              value=""
-              placeholder="Title"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="category">Category</label>
-            <select className="form-control" value="">
-              <option>Select Category</option>
-              <option value="category">category</option>
-              <option value="category">category</option>
-              <option value="category">category</option>
-              <option value="category">category</option>
-            </select>
-          </div>
-          <div className="form-group">
-            <label htmlFor="price">Price</label>
-            <input
-              className="form-control"
-              id="price"
-              type="text"
-              value=""
-              placeholder="Price"
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="discountedPrice">Price</label>
-            <input
-              className="form-control"
-              id="discountedPrice"
-              type="text"
-              value=""
-              placeholder="Discounted Price"
-            />
-          </div>
-          <div className="form-group">
-            <input
-              className="form-control border-0 "
-              type="file"
-              value=""
-            />
-          </div>
+          <form onSubmit={onSubmitHandler}>
+            <FormGroup id="title" label="Title" value={title} type="text" set={setTitle}/>
+            <FormGroup id="price" label="Price" value={price} type="text" set={setPrice}/>
+
           <div className="form-group">
             <ControlledEditor editorState={editorState} onEditorStateChange={onEditorStateChange}/>
           </div>
           <div className="d-flex">
-            <button  type="button" className="btn btn-sm btn-info ml-auto px-4">update</button>
+            <button  type="submit" className="btn btn-sm btn-info ml-auto px-4">update</button>
             <button onClick={e => props.setIsEdit(!props.isEdit)} type="button" className="btn btn-sm btn-danger mx-3 px-4">close</button>
           </div>
           </form>
@@ -88,5 +62,16 @@ const EditProduct = (props) => {
     </div>
   )
 }
+
+const FormGroup = ({id,label,type,set,value}) => {
+  return(
+    <div className="form-group">
+      <label htmlFor={id}>{label}</label>
+      <input required type={type} id={id} onChange={e => set(e.target.value)} className="form-control" value={value} placeholder={label} />
+    </div>
+  )
+}
+
+
 
 export default EditProduct

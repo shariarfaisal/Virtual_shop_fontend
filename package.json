@@ -10,6 +10,7 @@
     "draftjs-to-html": "^0.8.4",
     "for-editor": "^0.3.0",
     "html-to-draftjs": "^1.4.0",
+    "jwt-decode": "^2.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-draft-wysiwyg": "^1.13.2",

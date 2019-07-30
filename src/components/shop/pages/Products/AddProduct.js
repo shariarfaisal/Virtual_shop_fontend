@@ -3,10 +3,10 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import CreateProduct from './CreateProduct';
 
-const AddProduct = () => {
+const AddProduct = ({category}) => {
   const [isProductAdd,setIsProductAdd] = useState(false);
   return (
-    !isProductAdd ? <div className="col-md-4">
+    !isProductAdd ? <div className="col-10">
       <div  className="card bg-light border-0 rounded-0" style={{
         minHeight: '100px'
       }}>
@@ -19,7 +19,7 @@ const AddProduct = () => {
           </div>
         </div>
       </div>
-    </div> : <CreateProduct isProductAdd={isProductAdd} setIsProductAdd={setIsProductAdd}/>
+    </div> : <CreateProduct catName={category} isProductAdd={isProductAdd} setIsProductAdd={setIsProductAdd}/>
   )
 }
 

@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components';
 
-const Category = ({name}) => (
-  <CategoryStyle className="card bg-light border-0 rounded-0 text-capitalize">
+const Category = ({cat}) => (
+  <CategoryStyle className="col-md-3 m-3 card bg-light border-0 rounded-0 text-capitalize">
     <div className="card-body text-center d-flex align-items-center">
-      <a href="/" className="text-muted text-center h3">
-        <span>{name}</span>
+      <a style={{fontSize: 'x-large'}} href={`/shop/products/${cat.name.toLowerCase()}`} className="text-muted text-center h3">
+        <span>{cat.name}</span>
       </a>
     </div>
   </CategoryStyle>

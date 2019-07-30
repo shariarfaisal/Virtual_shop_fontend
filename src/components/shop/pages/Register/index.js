@@ -8,12 +8,15 @@ const Register = (props) => {
   const [password,setPassword] = useState('');
   const [confirmPassword,setConfirmPassword] = useState('');
   const [isOk,setIsOk] = useState(false);
+
   const onChangeHandler = async (e) => {
     e.preventDefault();
-    const shop = await Axios.post(`http://localhost:1000/api/shop/register`,{name,email,phone,password,confirmPassword});
+    const shop = await Axios.post(`${link}/api/shop/register`,{name,email,phone,password,confirmPassword});
     if(shop.data === true ){
       setIsOk(true);
+      setName('');setEmail('');setPhone('');setPassword('');setConfirmPassword('');
     }
+
   }
 
 
@@ -22,32 +25,17 @@ const Register = (props) => {
       <div className="row">
         <div className="col-md-8 mx-auto text-center my-5">
           <h3 className="text-muted">Register to create shop account</h3>
-          <p className="text-center text-success my-2">{isOk && 'Your account created successfully'}</p>
+          {isOk && <div className=" text-center alert alert-success my-2" role="alert">Your account created successfully</div>}
         </div>
         <div className="col-md-6 m-auto">
         <div className="card">
           <div className="card-body">
-            <form ref={formRef} onSubmit={onChangeHandler}>
-              <div className="form-group">
-                <label htmlFor="name">Name</label>
-                <input required type="text" id="name" onChange={e => setName(e.target.value)} className="form-control" value={name} placeholder="Name" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input required id="email" type="email" onChange={e => setEmail(e.target.value)} className="form-control" value={email} placeholder="Email" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="phone">Phone</label>
-                <input required id="phone" type="text" onChange={e => setPhone(e.target.value)} className="form-control" value={phone} placeholder="Phone" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input required id="password" type="password" onChange={e => setPassword(e.target.value)} className="form-control" value={password} placeholder="Password" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="confirmPassword">Confirm Password</label>
-                <input required id="confirmPassword" type="password" onChange={e => setConfirmPassword(e.target.value)} className="form-control" value={confirmPassword} placeholder="Confirm Password" />
-              </div>
+            <form  onSubmit={onChangeHandler}>
+              <FormGroup id="name" label="Name" type="text" set={setName} value={name} />
+              <FormGroup id="email" label="Email" type="email" set={setEmail} value={email} />
+              <FormGroup id="phone" label="Phone" type="text" set={setPhone} value={phone} />
+              <FormGroup id="password" label="Password" type="password" set={setPassword} value={password} />
+              <FormGroup id="confirmPassword" label="Confirm Password" type="password" set={setConfirmPassword} value={confirmPassword} />
               <button type="submit" className="btn btn-sm btn-primary">Submit</button>
               <p className="text-muted my-2" style={{fontSize: '15px',fontWeight: '500'}}>Already have an account? <a href="/shop/login">login here</a></p>
             </form>
@@ -55,6 +43,15 @@ const Register = (props) => {
         </div>
         </div>
       </div>
+    </div>
+  )
+}
+
+const FormGroup = ({id,label,type,set,value}) => {
+  return(
+    <div className="form-group">
+      <label htmlFor={id}>{label}</label>
+      <input required type={type} id={id} onChange={e => set(e.target.value)} className="form-control" value={value} placeholder={label} />
     </div>
   )
 }
