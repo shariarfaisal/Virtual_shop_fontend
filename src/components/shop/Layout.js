@@ -1,11 +1,8 @@
 import React,{useEffect} from 'react'
 import Header from './Header/index';
-import Sidebar from './Sidebar/index';
 import styled from 'styled-components';
-import Breadcrumb from './Breadcrumb';
 import {withRouter} from 'react-router-dom'
-import ShopContextProvider,{ShopContext} from './context/ShopContext';
-
+import RightSidebar from './RightSidebar/index'
 const Layout = ({history,children}) => {
 
   useEffect(()=>{
@@ -15,40 +12,35 @@ const Layout = ({history,children}) => {
     }
   })
   return (
-    <LayoutStyling id="shop-wrapper">
-      <div id="shop-header" className="fixed-top">
+      <LayoutStyling className="row align-items-stretch mx-auto">
         <Header />
-      </div>
-      <div id="shop-content-wrapper">
-        <Sidebar />
-        <div id="shop-content">
-          <Breadcrumb />
-          <ShopContextProvider>
-            {children}
-          </ShopContextProvider>
-        </div>
-      </div>
-    </LayoutStyling>
+          <div className="col-md-9" >
+            <div className="row">
+              <div className="col-md-8" style={{border:' 1px solid #ebebeb', minHeight: '100vh',borderTop: '0'}}>
+                <div className="row">
+                  <div className="col-12 sticky-top" style={{borderBottom: '1px solid #ebebeb',background: '#ffffff'}}>
+                    <h3 className="pl-2  py-2" style={{fontSize: '20px',fontWeight: 'bold'}}>Header</h3>
+                  </div>
+                  <div className="col-12" style={{height: '100%'}}>
+                    <div className="row">
+
+                        {children}
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <RightSidebar />
+            </div>
+          </div>
+      </LayoutStyling>
   )
 }
 
 const LayoutStyling = styled.div`
-  #shop-content-wrapper{
-    width: 100%;
-    margin-top: 57px;
-  }
-  #shop-sidebar{
-    width: 25%;
-    height: 100%;
-    position: fixed;
+  font-family: 'Crimson Pro', serif;
+  max-width: 90%;
 
-  }
-  #shop-content{
-    width: 75%;
-    min-height: 700px;
-    margin-left: 25%;
-    background: #efefef;
-  }
 `
 
 export default withRouter(Layout)

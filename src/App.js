@@ -5,9 +5,9 @@ import ThemeContextProvider from './components/fontend/context/ThemeContext';
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 import AdminHome from './components/backend/pages/Home/index';
 import ShopHome from './components/shop/pages/Home/index';
-import Products from './components/shop/pages/Products/index';
 import Register from './components/shop/pages/Register/index';
 import Login from './components/shop/pages/Login/index';
+import CoreContextProvider from './components/context/CoreContext';
 
 const routes = [
   {
@@ -26,10 +26,10 @@ const routes = [
     path: '/shop',
     component: ShopHome
   },
-  {
-    path: '/shop/products/:category',
-    component: Products
-  },
+  // {
+  //   path: '/shop/products/:category',
+  //   component: Products
+  // },
   {
     path: '/shop/register',
     component: Register
@@ -43,17 +43,19 @@ const routes = [
 
 function App() {
   return (
-    <ThemeContextProvider>
-      <Router>
-        <Switch>
-          {
-            routes.map((i,key) => {
-              return <Route path={i.path} exact component={i.component}/>
-            })
-          }
-        </Switch>
-      </Router>
-    </ThemeContextProvider>
+    <CoreContextProvider>
+      <ThemeContextProvider>
+        <Router>
+          <Switch>
+            {
+              routes.map((i,key) => {
+                return <Route path={i.path} exact component={i.component}/>
+              })
+            }
+          </Switch>
+        </Router>
+      </ThemeContextProvider>
+    </CoreContextProvider>
   );
 }
 
