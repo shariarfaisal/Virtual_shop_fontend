@@ -7,6 +7,7 @@ import AdminHome from './components/backend/pages/Home/index';
 import ShopHome from './components/shop/pages/Home/index';
 import Register from './components/shop/pages/Register/index';
 import Login from './components/shop/pages/Login/index';
+import Profile from './components/shop/pages/Profile/index';
 import CoreContextProvider from './components/context/CoreContext';
 
 const routes = [
@@ -26,10 +27,10 @@ const routes = [
     path: '/shop',
     component: ShopHome
   },
-  // {
-  //   path: '/shop/products/:category',
-  //   component: Products
-  // },
+  {
+    path: '/products/:category',
+    component: ShopHome
+  },
   {
     path: '/shop/register',
     component: Register
@@ -37,6 +38,10 @@ const routes = [
   {
     path: '/shop/login',
     component: Login
+  },
+  {
+    path: '/profile',
+    component: Profile
   }
 ]
 
@@ -49,7 +54,7 @@ function App() {
           <Switch>
             {
               routes.map((i,key) => {
-                return <Route path={i.path} exact component={i.component}/>
+                return <Route key={key} path={i.path} exact component={i.component}/>
               })
             }
           </Switch>

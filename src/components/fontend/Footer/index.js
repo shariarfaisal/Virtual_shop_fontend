@@ -43,21 +43,21 @@ const Footer = (props) => {
   return (
     <FooterStyle className="footer" className="row bg-dark text-light">
       <div className="col-md-6 p-4">
-        {categories.map((i,key) => <Item>{i}</Item>)}
+        {categories.map((i,key) => <Item key={key}>{i}</Item>)}
       </div>
       <div className="col-md-6 p-4">
           <div className="social-icons d-flex flex-row justify-content-center">
             <div className="mx-2">
-              <a href="/"><i class="fas fa-heart"></i></a>
+              <a href="/"><i className="fas fa-heart"></i></a>
             </div>
             <div className="mx-2">
-              <a href="/"><i class="fas fa-heart"></i></a>
+              <a href="/"><i className="fas fa-heart"></i></a>
             </div>
             <div className="mx-2">
-              <a href="/"><i class="fas fa-heart"></i></a>
+              <a href="/"><i className="fas fa-heart"></i></a>
             </div>
             <div className="mx-2">
-              <a href="/"><i class="fas fa-heart"></i></a>
+              <a href="/"><i className="fas fa-heart"></i></a>
             </div>
         </div>
       </div>

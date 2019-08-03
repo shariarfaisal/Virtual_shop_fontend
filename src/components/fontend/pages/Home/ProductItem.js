@@ -4,26 +4,26 @@ import IconButton from '@material-ui/core/IconButton'
 import Icon from '@material-ui/core/Icon'
 import styled from 'styled-components';
 import {ThemeContext} from '../../context/ThemeContext'
-
+import link from '../../../link';
 const Tag = ({tag}) => (
   <div className="tag">
     {tag}
   </div>
 )
-const ProductItem = (props) => {
+const ProductItem = ({title,time,shop,description,category,cols,price,image}) => {
     const theme = useContext(ThemeContext)
   const [heart,setHeart] = useState(false);
   return (
-    <ProductItemStyle className={`col-md-${props.cols} p-3`}>
+    <ProductItemStyle className={`col-md-${cols} p-3`}>
       <div className="card border-0 p-0">
         <div className="card-header p-0">
           <a title="view details" href="/">
-            <img src="img/img1.jpg" className="card-img-top" alt="" />
+            <img src={`${link}/${image}`} className="card-img-top" alt="" />
           </a>
         </div>
         <div className="card-body border-0">
-          <h4 className="text-center" style={theme.h2}>There will be title</h4>
-          <p className="text-center">$30</p>
+          <h4 className="text-center" style={theme.h2}>{title}</h4>
+          <p className="text-center">${price}</p>
           <div className="item-footer d-flex">
             <div onClick={() => setHeart(!heart)} className="w-50 ml-2 mt-2">
               <IconButton>

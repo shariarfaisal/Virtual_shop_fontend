@@ -1,12 +1,13 @@
 import React from 'react'
 import styled from 'styled-components';
 import ProductItem from './ProductItem'
-const Products = (props) => {
+
+const Products = ({products}) => {
   return (
     <BorderDisplayStyle id="product-display" className="col-8 mx-auto">
         <div className="row pb-5">
           {
-            [1,2,3,4,5,6,].map((i,key) => <ProductItem cols="4" key={key} />)
+            products.map((i,key) => <ProductItem cols="4" key={key} {...i}/>)
           }
         </div>
     </BorderDisplayStyle>

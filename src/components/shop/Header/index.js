@@ -3,6 +3,14 @@ import styled from 'styled-components';
 
 const Header = (props) => {
 
+const logout = () => {
+  const confirm = window.confirm('Are you sure you want to logout ?')
+  if(confirm){
+    localStorage.removeItem('virtual_shopkeeper_token');
+    window.location = '/shop/login';
+  }
+}
+
 
   return (
     <HeaderStyle className="col-md-3 sticky-top" style={{height: '100vh'}}>
@@ -13,13 +21,13 @@ const Header = (props) => {
           </div>
           <nav>
             <ul className="nav d-flex flex-column">
-              <a href="#" className="nav-item py-2 my-2 d-flex">
+              <a href="/shop" className="nav-item py-2 my-2 d-flex">
                 <div className="d-flex">
                   <span className="px-2"><i className="fas fa-home"></i></span>
                   <span className="px-2">Home</span>
                 </div>
               </a>
-              <a href="#" className="nav-item py-2 my-2">
+              <a href="/profile" className="nav-item py-2 my-2">
                 <div className="d-flex">
                   <span className="px-2"><i className="fas fa-user"></i></span>
                   <span className="px-2">Profile</span>
@@ -28,9 +36,15 @@ const Header = (props) => {
               <a href="#" className="nav-item py-2 my-2">
                 <div className="d-flex">
                   <span className="px-2"><i className="fas fa-home"></i></span>
-                  <span className="px-2">Category</span>
+                  <span className="px-2">Notifications</span>
                 </div>
               </a>
+              <p style={{cursor: 'pointer'}} onClick={logout} className="nav-item py-2 my-2">
+                <div className="d-flex">
+                  <span className="px-2"><i className="fas fa-logout"></i></span>
+                  <span className="px-2">Logout</span>
+                </div>
+              </p>
               <a href="#" className="nav-item py-2 my-2">
                 <div className="d-flex">
                   <span className="px-2"><i className="fas fa-home"></i></span>

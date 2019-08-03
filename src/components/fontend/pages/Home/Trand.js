@@ -4,14 +4,14 @@ import styled from 'styled-components';
 import {ThemeContext} from '../../context/ThemeContext'
 
 
-const Trand = (props) => {
+const Trand = ({products}) => {
     const theme = useContext(ThemeContext)
   // const [products,setProducts] = useState([])
   return (
     <TrandStyle className="col-12 bg-light">
     <h1 className="text-center my-3" style={theme.h1}>Most Popular</h1>
       <div className="row">
-        {[1,2,3,4].map((i,key) => <ProductItem cols="3" key={key} />)}
+        {products.map((i,key) => <ProductItem cols="3" key={key} {...i}/>)}
       </div>
     </TrandStyle>
   )

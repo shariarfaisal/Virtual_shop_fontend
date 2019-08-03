@@ -8,13 +8,13 @@ const Register = (props) => {
   const [password,setPassword] = useState('');
   const [confirmPassword,setConfirmPassword] = useState('');
   const [isOk,setIsOk] = useState(false);
-
+  const [country,setCountry] = useState('')
   const onChangeHandler = async (e) => {
     e.preventDefault();
-    const shop = await Axios.post(`${link}/api/shop/register`,{name,email,phone,password,confirmPassword});
+    const shop = await Axios.post(`${link}/api/shop/register`,{name,email,phone,password,confirmPassword,country});
     if(shop.data === true ){
       setIsOk(true);
-      setName('');setEmail('');setPhone('');setPassword('');setConfirmPassword('');
+      setName('');setEmail('');setPhone('');setPassword('');setConfirmPassword('');setCountry('')
     }
 
   }
@@ -33,6 +33,7 @@ const Register = (props) => {
             <form  onSubmit={onChangeHandler}>
               <FormGroup id="name" label="Name" type="text" set={setName} value={name} />
               <FormGroup id="email" label="Email" type="email" set={setEmail} value={email} />
+              <FormGroup id="country" label="Country" type="country" set={setCountry} value={country} />
               <FormGroup id="phone" label="Phone" type="text" set={setPhone} value={phone} />
               <FormGroup id="password" label="Password" type="password" set={setPassword} value={password} />
               <FormGroup id="confirmPassword" label="Confirm Password" type="password" set={setConfirmPassword} value={confirmPassword} />
