@@ -8,3 +8,12 @@ export const setShopToken = (token) => {
     axios.defaults.headers.common['virtual_shopkeeper_token'] = ''
   }
 }
+
+export const setCustomarToken = (token) => {
+  if(token) {
+    axios.defaults.headers.common['virtual_customar_token'] = token
+  }
+  else{
+    axios.defaults.headers.common['virtual_customar_token'] = ''
+  }
+}

@@ -6,7 +6,7 @@ import Products from './Products'
 import Featured from './Featured'
 import Subscribe from './Subscribe'
 import Trand from './Trand';
-import CoreContextProvider , {CoreContext} from '../../../context/CoreContext';
+import {CoreContext} from '../../../context/CoreContext';
 
 const productsFilter = (context,setProducts) => {
   setProducts(context.products);
@@ -31,19 +31,16 @@ const Home = (props) => {
   })
 
   return (
-    <CoreContextProvider>
       <Layout>
         <div id="content" className="row">
-          <Filter />
           <Products products={products}/>
           <Trand products={mostPopular}/>
           <Featured />
           <Subscribe />
         </div>
       </Layout>
-    </CoreContextProvider>
   )
 }
-
+// <Filter />
 
 export default Home

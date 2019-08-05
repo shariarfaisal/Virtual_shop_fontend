@@ -9,6 +9,13 @@ const Register = (props) => {
   const [confirmPassword,setConfirmPassword] = useState('');
   const [isOk,setIsOk] = useState(false);
   const [country,setCountry] = useState('')
+
+  const checkLogin = (history) => {
+    const token = localStorage.getItem('virtual_shopkeeper_token');
+    if(token){
+      history.push('/shop')
+    }
+  }
   const onChangeHandler = async (e) => {
     e.preventDefault();
     const shop = await Axios.post(`${link}/api/shop/register`,{name,email,phone,password,confirmPassword,country});
@@ -19,6 +26,7 @@ const Register = (props) => {
 
   }
 
+  checkLogin(props.history)
 
   return (
     <div className="container">

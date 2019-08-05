@@ -43,11 +43,9 @@ const Nav = (props) => {
             handleClick={handleClick}>
               Kids
            </NavItem>
-          <NavItem
-            id="brand_menu"
-            handleClick={handleClick}>
-              Brand
-           </NavItem>
+          <li>
+              <a className="nav-link" href="/brand">Brand</a>
+          </li>
         </ul>
         <NavigationMenu id="women_menu" anchorEl={anchorEl} handleClose={handleClose}/>
         <NavigationMenu id="men_menu" anchorEl={anchorEl} handleClose={handleClose}/>

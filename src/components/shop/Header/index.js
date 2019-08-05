@@ -27,13 +27,13 @@ const logout = () => {
                   <span className="px-2">Home</span>
                 </div>
               </a>
-              <a href="/profile" className="nav-item py-2 my-2">
+              <a href="/shop/profile" className="nav-item py-2 my-2">
                 <div className="d-flex">
                   <span className="px-2"><i className="fas fa-user"></i></span>
                   <span className="px-2">Profile</span>
                 </div>
               </a>
-              <a href="#" className="nav-item py-2 my-2">
+              <a href="/shop/notifications" className="nav-item py-2 my-2">
                 <div className="d-flex">
                   <span className="px-2"><i className="fas fa-home"></i></span>
                   <span className="px-2">Notifications</span>

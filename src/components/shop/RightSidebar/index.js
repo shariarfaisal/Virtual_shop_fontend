@@ -58,7 +58,7 @@ const RightSidebar = (props) => {
 
 const CategoryItem  = ({name}) => (
   <div className="list-group-item list-group-item-action border-0 py-2 pl-4" style={{background: 'transparent'}}>
-    <a  href={`/products/${name}`} style={{
+    <a  href={`/shop/products/${name}`} style={{
       textDecoration: 'none',
       color: 'black',
       fontSize: '17px',

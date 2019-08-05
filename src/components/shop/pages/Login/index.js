@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import Axios from 'axios';
 import link from '../../../link'
 
@@ -8,6 +8,12 @@ const Login = (props) => {
   const [password,setPassword] = useState('');
   const [isError,setIsError] = useState(false);
 
+useEffect(() => {
+  const token = localStorage.getItem('virtual_shopkeeper_token');
+  if(token){
+    props.history.push('/shop')
+  }
+})
   const onChangeHandler = async e => {
     e.preventDefault();
     const login = await Axios.post(`${link}/api/shop/login`,{email,password});

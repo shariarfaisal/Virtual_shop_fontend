@@ -5,19 +5,21 @@ import Icon from '@material-ui/core/Icon'
 import styled from 'styled-components';
 import {ThemeContext} from '../../context/ThemeContext'
 import link from '../../../link';
-const Tag = ({tag}) => (
-  <div className="tag">
-    {tag}
+import {Link} from 'react-router-dom';
+
+const Brand = ({name,id}) => (
+  <div className="brand">
+    <Link to={`/brand/${id}`}>{name}</Link>
   </div>
 )
-const ProductItem = ({title,time,shop,description,category,cols,price,image}) => {
+const ProductItem = ({_id,title,time,shop,description,category,cols,price,image}) => {
     const theme = useContext(ThemeContext)
   const [heart,setHeart] = useState(false);
   return (
     <ProductItemStyle className={`col-md-${cols} p-3`}>
       <div className="card border-0 p-0">
         <div className="card-header p-0">
-          <a title="view details" href="/">
+          <a title="view details" href={`/product/${_id}`}>
             <img src={`${link}/${image}`} className="card-img-top" alt="" />
           </a>
         </div>
@@ -35,14 +37,14 @@ const ProductItem = ({title,time,shop,description,category,cols,price,image}) =>
           </div>
         </div>
       </div>
-      <Tag tag="HOT"/>
+      <Brand name={shop.name} id={shop._id}/>
     </ProductItemStyle>
   )
 }
 
 const ProductItemStyle = styled.div`
   position: relative;
-  .tag{
+  .brand{
     position: absolute;
     background: rgb(245,0,87);
     color: #ffffff;
@@ -52,6 +54,10 @@ const ProductItemStyle = styled.div`
     box-shadow: 0 0px 8px rgb(48, 48, 48);
     font-weight: 700;
     letter-spacing: 3px;
+
+    a{
+      color: #ffffff;
+    }
   }
   .card{
     transition: .3s;

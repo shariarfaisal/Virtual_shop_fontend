@@ -4,10 +4,10 @@ import ProductItem from './ProductItem'
 
 const Products = ({products}) => {
   return (
-    <BorderDisplayStyle id="product-display" className="col-8 mx-auto">
+    <BorderDisplayStyle id="product-display" className="col-12 mx-auto">
         <div className="row pb-5">
           {
-            products.map((i,key) => <ProductItem cols="4" key={key} {...i}/>)
+            products.map((i,key) => <ProductItem cols="3" key={key} {...i}/>)
           }
         </div>
     </BorderDisplayStyle>
