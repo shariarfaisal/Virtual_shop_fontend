@@ -2,6 +2,7 @@ import React,{useEffect} from 'react'
 import Header from './Header/index';
 import Footer from './Footer/index';
 import {withRouter} from 'react-router-dom'
+import ProfileContextProvider from './context/ProfileContext';
 
 
 const Layout = ({history,children}) => {

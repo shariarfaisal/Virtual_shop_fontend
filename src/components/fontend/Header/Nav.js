@@ -1,6 +1,10 @@
-import React,{Fragment} from 'react'
+import React,{Fragment,useState,useContext,useEffect} from 'react'
 import PropTypes from 'prop-types'
 import NavigationMenu from './NavigationMenu'
+import {ProfileContext} from '../context/ProfileContext';
+import Menu from '@material-ui/core/Menu';
+import {withRouter} from 'react-router-dom';
+
 const NavItem = (props) => (
   <li
     aria-controls={props.id}
@@ -10,9 +14,25 @@ const NavItem = (props) => (
     <a onClick={(e => e.preventDefault())} className="nav-link" href="/">{props.children}</a>
   </li>
 )
+const nameConverter = (name) => {
+  const a = name.split(' ');
+  const b = a.length-1;
+  if(a.length >= 3){
+    return a[b];
+  }
+  return a[0]+' '+a[1];
+
+}
+
 
 const Nav = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [profile,setProfile] =useState({});
+  const context = useContext(ProfileContext);
+
+  useEffect(() => {
+    setProfile(context.profile)
+  })
 
  function handleClick(event) {
    setAnchorEl(event.currentTarget);
@@ -21,6 +41,13 @@ const Nav = (props) => {
  function handleClose() {
    setAnchorEl(null);
  }
+
+ const getLogout = (e) => {
+   e.preventDefault();
+   const token = localStorage.removeItem('virtual_customar_token');
+   props.history.push('/login');
+ }
+
   return (
     <Fragment>
       <button type="button" className="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarNav" name="button">
@@ -43,16 +70,21 @@ const Nav = (props) => {
             handleClick={handleClick}>
               Kids
            </NavItem>
-          <li>
-              <a className="nav-link" href="/brand">Brand</a>
+          <li className="nav-item">
+              <a className="nav-link" href="/brands">Brands</a>
+          </li>
+          <li className="nav-item dropdown">
+            <a name="button" href="/" className="nav-link dropdown-toggle" data-toggle="dropdown">{Object.keys(profile).length > 0 ? nameConverter(profile.name) : ''}</a>
+            <div className="dropdown-menu">
+              <a className="dropdown-item" href="/profile">profile</a>
+              <a onClick={getLogout} className="dropdown-item" href="/login">logout</a>
+            </div>
           </li>
         </ul>
         <NavigationMenu id="women_menu" anchorEl={anchorEl} handleClose={handleClose}/>
-        <NavigationMenu id="men_menu" anchorEl={anchorEl} handleClose={handleClose}/>
-        <NavigationMenu id="kids_menu" anchorEl={anchorEl} handleClose={handleClose}/>
       </div>
     </Fragment>
   )
 }
 
-export default Nav
+export default withRouter(Nav);

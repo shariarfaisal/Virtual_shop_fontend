@@ -53,7 +53,7 @@ const AddReview = (props) => {
           <div className="mb-4 ml-2 mt-3">
             {
               [1,2,3,4,5].map((i,key) => (
-                star >= i ? <Star onClick={e => setStar(i)} className={classes.star}/> : <StarBorder onClick={e => setStar(i)} className={classes.starBorder}/>
+                star >= i ? <Star key={key} onClick={e => setStar(i)} className={classes.star}/> : <StarBorder key={key} onClick={e => setStar(i)} className={classes.starBorder}/>
               ))
             }
           </div>

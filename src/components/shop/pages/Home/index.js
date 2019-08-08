@@ -2,7 +2,7 @@ import React,{useState,useContext,useEffect}  from 'react'
 import Layout from '../../Layout';
 import AddProduct from '../ProductHandler/AddProduct/index';
 import ProductHandler from '../ProductHandler/index';
-import {CoreContext} from '../../../context/CoreContext';
+import {ShopContext} from '../../../context/ShopContext';
 
 
 const productFilter = (context,setProducts,category,setIsProduct) => {
@@ -17,7 +17,7 @@ const productFilter = (context,setProducts,category,setIsProduct) => {
 }
 
 const Home = (props) => {
-  const context = useContext(CoreContext)
+  const context = useContext(ShopContext)
   const [products,setProducts] = useState([]);
   const [isUp,setIsUp] = useState(null);
   useEffect(()=>{

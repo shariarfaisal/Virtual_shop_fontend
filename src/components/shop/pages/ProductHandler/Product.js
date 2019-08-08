@@ -36,14 +36,14 @@ const getDelete = async (id,setIsUp) => {
 const stringLimit = (str) => str.substr(1,100);
 
 
-const ProductSection = ({_id,title,category,image,description,time,shop,price,isEdit,setIsEdit,setIsUp}) => {
+const ProductSection = ({_id,tags,title,category,image,description,time,shop,price,isEdit,setIsEdit,setIsUp}) => {
   const des = ReactHtmlParser(description)
   return (
     <StyleProduct className="col-12 py-4" style={{borderBottom: '1px solid rgb(235, 235, 235)'}}>
       <div className="card p-0 border-0 rounded-0">
         <div className="d-flex">
           <div className="">
-            <h4 className="m-0">{title}</h4>
+            <h4 style={{cursor: 'pointer'}} data-toggle="collapse" data-target={`#product-${_id}`}  aria-expanded="false" className="m-0">{title}</h4>
             <h6>{category.name}</h6>
             <p className="text-muted">{time}</p>
           </div>
@@ -58,25 +58,33 @@ const ProductSection = ({_id,title,category,image,description,time,shop,price,is
               </button>
             </div>
           </div>
+        </div>
 
-        </div>
-        <div className="">
+        <div className="collapse" id={`product-${_id}`}>
           <img src={`${link}/${image}`} alt={`${title}`} className="card-img-top rounded-0" />
-        </div>
-        <div className="d-flex py-3 justify-content-around">
-          <div className="h5">
-            <span className="text-muted">likes</span> 123
+          <div className="d-flex py-3 justify-content-around">
+            <div className="h5">
+              <span className="text-muted">likes</span> 123
+            </div>
+            <div className="h5" style={{cursor: 'pointer'}}>
+                <span className="text-muted">comments</span> 20
+            </div>
           </div>
-          <div className="h5" style={{cursor: 'pointer'}}>
-              <span className="text-muted">comments</span> 20
+          <div>
+            <ul className="nav">
+              {tags.map((i,key) => {
+                return <li style={{fontWeight: 'bold',borderRadius: '2px'}} className="nav-item bg-light px-3 py-1 mx-2" key={key}>{i}</li>
+              })}
+            </ul>
+          </div>
+          <div>
+            <p className="my-3 text-muted" data-target={`#product_collapse_${_id}`} data-toggle="collapse" style={{cursor: 'pointer',textDecoration: 'underline'}}>More about product</p>
+            <div  className="collapse" id={`product_collapse_${_id}`} >
+              {des}
+            </div>
           </div>
         </div>
-        <div>
-          <p className="my-3 text-muted" data-target={`#product_collapse_${_id}`} data-toggle="collapse" style={{cursor: 'pointer',textDecoration: 'underline'}}>More about product</p>
-          <div  className="collapse" id={`product_collapse_${_id}`} >
-            {des}
-          </div>
-        </div>
+
       </div>
     </StyleProduct>
   )

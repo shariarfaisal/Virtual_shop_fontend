@@ -4,10 +4,18 @@ import ProductItem from './ProductItem'
 
 const Products = ({products}) => {
   return (
-    <BorderDisplayStyle id="product-display" className="col-12 mx-auto">
-        <div className="row pb-5">
+    <BorderDisplayStyle id="product-display" className="col-12 col-md-10 mx-auto">
+      <div className="py-2 mb-2 d-flex bg-light">
+        <div className="input-group input-group-sm ml-auto" style={{width: '200px'}}>
+          <input type="text" placeholder="search" className="form-control" />
+          <div className="input-group-append">
+            <button type="submit" className="btn btn-secondary" name="button">Search</button>
+          </div>
+        </div>
+      </div>
+        <div className="card-columns pb-5">
           {
-            products.map((i,key) => <ProductItem cols="3" key={key} {...i}/>)
+            products.map((i,key) => <ProductItem  key={key} {...i}/>)
           }
         </div>
     </BorderDisplayStyle>

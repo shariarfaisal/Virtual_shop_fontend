@@ -18,6 +18,7 @@ const EditProduct = (props) => {
   const [title,setTitle] = useState(props.title)
   const [category,setCategory] = useState(props.category._id);
   const [price,setPrice] = useState(props.price);
+  const [tags,setTags] = useState(props.tags.join());
   const blocksFromHtml = htmlToDraft(props.description);
   const { contentBlocks, entityMap } = blocksFromHtml;
   const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
@@ -35,7 +36,7 @@ const EditProduct = (props) => {
     // up.append('category',category);
     // up.append('price',price);
     // up.append('description',draftToHtml(convertToRaw(editorState.getCurrentContent())))
-    const updated = updateProduct(props._id,{title,category,price,description: draftToHtml(convertToRaw(editorState.getCurrentContent()))},props.setIsUp);
+    const updated = updateProduct(props._id,{title,tags,category,price,description: draftToHtml(convertToRaw(editorState.getCurrentContent()))},props.setIsUp);
   }
 
 
@@ -46,6 +47,7 @@ const EditProduct = (props) => {
           <form onSubmit={onSubmitHandler}>
             <FormGroup id="title" label="Title" value={title} type="text" set={setTitle}/>
             <FormGroup id="price" label="Price" value={price} type="text" set={setPrice}/>
+            <FormGroup id="tags" label="Tags" value={tags} type="text" set={setTags}/>
 
           <div className="form-group">
             <ControlledEditor editorState={editorState} onEditorStateChange={onEditorStateChange}/>

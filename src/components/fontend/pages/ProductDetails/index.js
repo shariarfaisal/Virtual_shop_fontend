@@ -28,7 +28,7 @@ const ProductDetails = ({match}) => {
           <div className="card border-0">
             <div className="card-body row">
               <ProductImage image={product.image}/>
-              <Details title={product.title} price={product.price} description={product.description}/>
+              <Details {...product}/>
             </div>
           </div>
         </div>

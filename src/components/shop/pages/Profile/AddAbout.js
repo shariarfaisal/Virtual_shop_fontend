@@ -10,7 +10,7 @@ const AddAbout = (props) => {
   return (
     <div className="my-3">
       {
-        !is ? <Button onClick={e => setIs(true)} style={{fontWeight: 'bold'}} className="text-muted">add about <i className="fas fa-plus ml-2 text-muted"></i></Button>: <ChangeAbout about={about} setAbout={setAbout} setIs={setIs}/>
+        !is ? <Button onClick={e => setIs(true)} style={{fontWeight: 'bold'}} className="text-muted">add about <i className="fas fa-plus ml-2 text-muted"></i></Button>: <ChangeAbout about={about} setAbout={setAbout} setIs={setIs} setIsUp={props.setIsUp}/>
       }
     </div>
   )

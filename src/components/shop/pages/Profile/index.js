@@ -1,11 +1,13 @@
 import React,{useState,useEffect,Fragment} from 'react'
 import Layout from '../../Layout';
-// import {CoreContext} from '../../../context/CoreContext';
+// import {ShopContext} from '../../../context/ShopContext';
 import styled from 'styled-components';
 import Axios from 'axios'
 import link from '../../../link';
 import AddAbout from './AddAbout';
 import ShowAbout from './ShowAbout';
+import ImageHandler from './ImageHandler';
+
 
 const getProfile = async (setProfile) => {
   const pro = await Axios.get(`${link}/api/shop/me`);
@@ -27,17 +29,12 @@ const Profile = (props) => {
       {profile && <div className="col-12 mb-5">
         <div className="card p-0 m-0 border-0">
           <div className="card-body p-0 m-0">
-              <div>
-                <img src={`${link}/${profile.image}`} className="card-img-top rounded-0 mt-3" alt={`${profile.name}`} />
-                <div className="">
-
-                </div>
-              </div>
+              <ImageHandler image={profile.image} name={profile.name}/>
               <div className="my-3 text-muted">
                 <ControlInfo setIsUp={setIsUp} profile={profile}/>
               </div>
               <ChangePassword />
-              {!profile.about ? <AddAbout /> : <ShowAbout setIsUp={setIsUp} about={profile.about} />}
+              {!profile.about ? <AddAbout setIsUp={setIsUp}/> : <ShowAbout setIsUp={setIsUp} about={profile.about} />}
           </div>
         </div>
       </div>}

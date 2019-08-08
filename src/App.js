@@ -1,6 +1,8 @@
 import React from 'react';
 import Home from './components/fontend/pages/Home/index';
-import Brand from './components/fontend/pages/Brand/index';
+import Brands from './components/fontend/pages/Brands/index';
+import BrandProfile from './components/fontend/pages/BrandProfile/index';
+import Profile from './components/fontend/pages/Profile/index';
 import Register from './components/fontend/pages/Register/index';
 import Login from './components/fontend/pages/Login/index';
 import ProductDetails from './components/fontend/pages/ProductDetails/index'
@@ -12,6 +14,8 @@ import ShopRegister from './components/shop/pages/Register/index';
 import ShopLogin from './components/shop/pages/Login/index';
 import ShopProfile from './components/shop/pages/Profile/index';
 import CoreContextProvider from './components/context/CoreContext';
+import ShopContextProvider from './components/context/ShopContext';
+import ProfileContextProvider from './components/fontend/context/ProfileContext';
 
 const routes = [
   {
@@ -19,8 +23,20 @@ const routes = [
     component: Home
   },
   {
-    path: '/brand',
-    component: Brand
+    path: '/brands',
+    component: Brands
+  },
+  {
+    path: '/brand/:id',
+    component: BrandProfile
+  },
+  {
+    path: '/brand/:id/:categoryId',
+    component: BrandProfile
+  },
+  {
+    path: '/profile',
+    component: Profile
   },
   {
     path: '/product/:id',
@@ -64,7 +80,9 @@ const routes = [
 function App() {
   return (
     <CoreContextProvider>
+      <ShopContextProvider>
       <ThemeContextProvider>
+        <ProfileContextProvider>
         <Router>
           <Switch>
             {
@@ -74,7 +92,9 @@ function App() {
             }
           </Switch>
         </Router>
+      </ProfileContextProvider>
       </ThemeContextProvider>
+      </ShopContextProvider>
     </CoreContextProvider>
   );
 }

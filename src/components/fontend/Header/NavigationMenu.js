@@ -29,22 +29,6 @@ const NavItem = ({children}) => (
                 <NavItem>Shoe</NavItem>
               </ul>
             </div>
-            <div className="col-4">
-              <ul className="nav flex-column">
-                <NavItem>Makeup Box</NavItem>
-                <NavItem>Makeup Box</NavItem>
-                <NavItem>Makeup Box</NavItem>
-                <NavItem>Makeup Box</NavItem>
-              </ul>
-            </div>
-            <div className="col-4">
-              <ul className="nav flex-column">
-                <NavItem>Hijab</NavItem>
-                <NavItem>Hijab</NavItem>
-                <NavItem>Nekab</NavItem>
-                <NavItem>Ohters</NavItem>
-              </ul>
-            </div>
           </NavMenu>
       </Menu>
     </div>

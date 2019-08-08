@@ -21,8 +21,8 @@ useEffect(() => {
     if(!login.data.error){
       setEmail('');setPassword('')
       localStorage.setItem('virtual_shopkeeper_token',login.data);
-      // const redirect = props.history.push('/shop')
-      window.location = '/shop'
+      const redirect = props.history.push('/shop')
+      // window.location = '/shop'
     }else{
       setIsError(true);
     }

@@ -33,6 +33,7 @@ const CreateProduct = ({isProductAdd,setIsProductAdd,context}) => {
   const [price,setPrice] = useState('');
   const [descountedPrice] = useState('');
   const [image,setImage] = useState('');
+  const [tags,setTags] = useState('');
   const [editorState,setEditorState] = useState(EditorState.createEmpty())
 
   const classes = useStyles();
@@ -51,11 +52,12 @@ const CreateProduct = ({isProductAdd,setIsProductAdd,context}) => {
     pro.append('price',price);
     pro.append('category',category);
     pro.append('image',image);
+    pro.append('tags',tags);
     pro.append('description',draftToHtml(convertToRaw(editorState.getCurrentContent())));
     e.preventDefault();
     const isUploaded = postProduct(pro,context.setIsUp);
     if(isUploaded) {
-      setTitle('');setPrice('');setImage(null);setEditorState(EditorState.createEmpty());
+      setTitle('');setTags('');setPrice('');setImage(null);setEditorState(EditorState.createEmpty());
     }
   }
 
@@ -72,17 +74,19 @@ const CreateProduct = ({isProductAdd,setIsProductAdd,context}) => {
                     id="contained-button-file"
                     onChange={e => setImage(e.target.files[0])}
                     type="file"
+                    required
                   />
                   <Button variant="contained" component="span" className={classes.button}>
                   <CloudUploadIcon style={{fontSize: '50px',color: '#059ab2'}} className={classes.rightIcon} />
                   </Button>
                 </label>
               </div>
-              <FormGroup id="title" label="Title" value={title} type="text" set={setTitle}/>
-              <FormGroup id="price" label="Price" value={price} type="text" set={setPrice}/>
+              <FormGroup placeholder="title" value={title} type="text" set={setTitle}/>
+              <FormGroup placeholder="price" value={price} type="text" set={setPrice}/>
               <FormSelect categories={context.categories} category={category} setCategory={setCategory}/>
-              <div className="form-group">
-                <ControlledEditor  editorState={editorState} onEditorStateChange={onEditorStateChange}/>
+              <FormGroup placeholder="tags separate with comma" value={tags} type="text" set={setTags}/>
+              <div style={{border: '1px solid #ced4da',borderRadius: '2px'}} className="form-group px-2">
+                <ControlledEditor   editorState={editorState} onEditorStateChange={onEditorStateChange}/>
               </div>
               <div className="d-flex justify-content-end">
                 <button type="submit" className="btn btn-sm btn-primary">Save</button>
@@ -108,10 +112,10 @@ const FormSelect = ({categories,category,setCategory}) =>{
   )
 }
 
-const FormGroup = ({id,label,type,set,value}) => {
+const FormGroup = ({placeholder,type,set,value}) => {
   return(
     <div className="form-group">
-      <input required type={type} id={id} onChange={e => set(e.target.value)} className="form-control" value={value} placeholder={label} />
+      <input required type={type} onChange={e => set(e.target.value)} className="form-control" value={value} placeholder={placeholder} />
     </div>
   )
 }

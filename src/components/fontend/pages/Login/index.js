@@ -6,7 +6,8 @@ const getLogin = async (data,history,setIsLogged) => {
   try {
     const log = await Axios.post(`${link}/api/customar/login`,data);
     localStorage.setItem('virtual_customar_token',log.data)
-    history.push('/');
+    // history.push('/');
+    window.location = '/'
   } catch (e) {
     setIsLogged(false)
   }
@@ -33,7 +34,7 @@ const Login = (props) => {
       <form onSubmit={onSubmitHandler}>
         {isLogged === false && <div className="alert alert-danger">Email or Password Doesn't match !</div>}
         <Input id="email" title="Email" type="email" value={email} set={setEmail}/>
-        <Input id="password" title="Password" type="password" value={password} set={setPassword}/>
+        <Input autoComplete id="password" title="Password" type="password" value={password} set={setPassword}/>
         <button type="submit" className="btn btn-sm btn-block btn-primary">login</button>
         <p className="text-muted my-2">Have no account? <a href="/register">register here</a></p>
       </form>

@@ -2,10 +2,10 @@ import React,{useState,useEffect,createContext} from 'react';
 import Axios from 'axios';
 import link from '../link'
 
-export const CoreContext = createContext();
+export const ShopContext = createContext();
 
 const getProduct = async (setProducts) => {
-  const pro = await Axios.get(`${link}/api/product`)
+  const pro = await Axios.get(`${link}/api/product/shop`)
   setProducts(pro.data)
 }
 
@@ -13,7 +13,7 @@ const getCategories = async (setCategories) => {
   const cats = await Axios.get(`${link}/api/category`)
   setCategories(cats.data)
 }
-const CoreContextProvider = ({children}) => {
+const ShopContextProvider = ({children}) => {
   const [products,setProducts] = useState([])
   const [categories,setCategories] = useState([])
   const [isUp,setIsUp] = useState(true);
@@ -27,10 +27,10 @@ const CoreContextProvider = ({children}) => {
   })
 
   return (
-    <CoreContext.Provider value={{products,categories,setIsUp}}>
+    <ShopContext.Provider value={{products,categories,setIsUp}}>
       {children}
-    </CoreContext.Provider>
+    </ShopContext.Provider>
   )
 }
 
-export default CoreContextProvider;
+export default ShopContextProvider;

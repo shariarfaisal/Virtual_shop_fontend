@@ -18,7 +18,7 @@ const Rating = ({rating}) => {
     <div className="star-rating my-3">
       {
         [1,2,3,4,5].map((i,key) => (
-          rating > i ? <Star className={classes.star}/> : <StarBorder className={classes.starBorder}/>
+          rating > i ? <Star key={key} className={classes.star}/> : <StarBorder key={key} className={classes.starBorder}/>
         ))
       }
     </div>

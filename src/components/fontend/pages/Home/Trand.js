@@ -10,8 +10,8 @@ const Trand = ({products}) => {
   return (
     <TrandStyle className="col-12 bg-light">
     <h1 className="text-center my-3" style={theme.h1}>Most Popular</h1>
-      <div className="row">
-        {products.map((i,key) => <ProductItem cols="3" key={key} {...i}/>)}
+      <div className="card-columns">
+        {products.map((i,key) => <ProductItem key={key} {...i}/>)}
       </div>
     </TrandStyle>
   )
