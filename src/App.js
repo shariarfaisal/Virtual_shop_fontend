@@ -28,7 +28,7 @@ const routes = [
     component: Brands
   },
   {
-    path: '/brand/:id',
+    path: '/brand/:brandId',
     component: BrandProfile
   },
   {
@@ -36,7 +36,7 @@ const routes = [
     component: Favourits
   },
   {
-    path: '/brand/:id/:categoryId',
+    path: '/brand/:brandId/:catId',
     component: BrandProfile
   },
   {

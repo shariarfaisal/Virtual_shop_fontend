@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import {ThemeContext} from '../../context/ThemeContext'
 import link from '../../../link';
 import {Link} from 'react-router-dom';
-import {ProfileContext} from '../../context/ProfileContext';
 import Axios from 'axios';
 
 const Brand = ({name,id}) => (
@@ -14,11 +13,9 @@ const Brand = ({name,id}) => (
     <Link to={`/brand/${id}`}>{name}</Link>
   </div>
 )
-const ProductItem = ({_id,title,time,shop,description,category,price,image}) => {
+const ProductItem = ({_id,title,time,shop,description,category,price,image,favourite}) => {
   const theme = useContext(ThemeContext)
-  const profileContext = useContext(ProfileContext);
   const [heart,setHeart] = useState(false);
-  const [favorites,setFavourites] = useState([])
   const [isFavourite,setIsFavourite] = useState(false);
 
   const getFavourite = async (e) => {
@@ -26,8 +23,8 @@ const ProductItem = ({_id,title,time,shop,description,category,price,image}) => 
     if(get) setIsFavourite(!isFavourite);
   }
   useEffect(() => {
-    if(profileContext.profile.favourite){
-      profileContext.profile.favourite.map(i => {
+    if(favourite){
+      favourite.map(i => {
         if(i.product._id === _id){
           setIsFavourite(true);
         }

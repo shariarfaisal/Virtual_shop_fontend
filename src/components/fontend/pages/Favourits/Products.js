@@ -1,22 +1,11 @@
 import React,{useEffect} from 'react'
 import styled from 'styled-components';
 import ProductItem from './ProductItem';
-
-const brandAddition = (products,brands) => {
-  if(products && brands){
-    products.map(pro => {
-      const brand = brands.find(i => i._id === pro.product.shop)
-      pro.product.shop = brand;
-    })
-    console.log(products);
-  }
-}
+import FavouriteHoc from './FavouriteHoc'
 
 const Products = ({products,brands}) => {
-  brandAddition(products,brands)
-
   return (
-    products && <BorderDisplayStyle id="product-display" className="col-12 col-md-10 mx-auto">
+    <BorderDisplayStyle id="product-display" className="col-12 col-md-10 mx-auto">
         <div className="card-columns pb-5">
           {
             products.map((i,key) => <ProductItem  key={key} {...i.product}/>)
@@ -46,4 +35,4 @@ const BorderDisplayStyle = styled.div`
   }
 `
 
-export default Products
+export default FavouriteHoc(Products)

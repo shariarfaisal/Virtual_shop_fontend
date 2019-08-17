@@ -5,13 +5,13 @@ import Filter from './Filter';
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 
-const Products = ({products}) => {
+const Products = ({products,profile}) => {
   return (
     <BorderDisplayStyle id="product-display" className="col-12 col-md-10 mx-auto">
         <Filter />
         <div className="card-columns pb-5">
           {
-            products.map((i,key) => <ProductItem  key={key} {...i}/>)
+            products.map((i,key) => <ProductItem  key={key} {...i} favourite={profile.favourite}/>)
           }
         </div>
         <div className="my-3 text-center">
