@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import {ThemeContext} from '../../context/ThemeContext'
 import link from '../../../link';
 import {Link} from 'react-router-dom';
-import {ProfileContext} from '../../context/ProfileContext';
 import Axios from 'axios';
 
 const Brand = ({name,id}) => (
@@ -16,24 +15,15 @@ const Brand = ({name,id}) => (
 )
 const ProductItem = ({_id,title,time,shop,description,category,price,image}) => {
   const theme = useContext(ThemeContext)
-  const profileContext = useContext(ProfileContext);
   const [heart,setHeart] = useState(false);
   const [favorites,setFavourites] = useState([])
-  const [isFavourite,setIsFavourite] = useState(false);
+  const [isFavourite,setIsFavourite] = useState(true);
 
   const getFavourite = async (e) => {
     const get = await Axios.post(`${link}/api/customar/favourite`,{product: _id})
     if(get) setIsFavourite(!isFavourite);
   }
-  useEffect(() => {
-    if(profileContext.profile.favourite){
-      profileContext.profile.favourite.map(i => {
-        if(i.product._id === _id){
-          setIsFavourite(true);
-        }
-      })
-    }
-  },[])
+
 
   return (
       <ProductItemStyle className="card border-0 p-0 mb-4">

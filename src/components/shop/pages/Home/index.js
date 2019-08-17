@@ -2,33 +2,38 @@ import React,{useState,useContext,useEffect}  from 'react'
 import Layout from '../../Layout';
 import AddProduct from '../ProductHandler/AddProduct/index';
 import ProductHandler from '../ProductHandler/index';
-import {ShopContext} from '../../../context/ShopContext';
+import Axios from 'axios';
+import link from '../../../link'
 
 
-const productFilter = (context,setProducts,category,setIsProduct) => {
+const getProduct = async (setProducts) => {
+  const pro = await Axios.get(`${link}/api/product/shop`)
+  setProducts(pro.data)
+}
+
+const productFilter = (products,category) => {
     if(category){
-      const products = context.products.filter(i => {
-        return i.category.name.toLowerCase() == category.toLowerCase()
-      })
-      setProducts(products);
+      return  products.filter(i => i.category.name.toLowerCase() == category.toLowerCase())
     }else{
-      setProducts(context.products);
+      return products
     }
 }
 
 const Home = (props) => {
-  const context = useContext(ShopContext)
-  const [products,setProducts] = useState([]);
-  const [isUp,setIsUp] = useState(null);
-  useEffect(()=>{
-    productFilter(context,setProducts,props.match.params.category)
-    setIsUp(context.setIsUp);
+  const [products,setProducts] = useState(null);
+  const [isUp,setIsUp] = useState(true);
+
+  useEffect(() => {
+    if(isUp){
+      getProduct(setProducts)
+      setIsUp(false)
+    }
   })
 
   return (
     <Layout>
-      <AddProduct context={context}/>
-      <ProductHandler  products={products} setIsUp={setIsUp}/>
+      <AddProduct />
+      {products && <ProductHandler  products={productFilter(products,props.match.params.category)} setIsUp={setIsUp}/>}
     </Layout>
   )
 }

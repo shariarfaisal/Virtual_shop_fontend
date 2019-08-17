@@ -11,6 +11,7 @@ import link from '../../../link';
 const getProduct = async (id,setProduct) => {
   const pro = await Axios.get(`${link}/api/product/${id}`);
   setProduct(pro.data);
+  console.log(pro.data);
 }
 
 
@@ -41,7 +42,7 @@ const ProductDetails = ({match}) => {
             </div>
           </div>
         </div>
-        <AlsoLike />
+        <AlsoLike shopId={product.shop._id}/>
       </div>}
     </Layout>
   )

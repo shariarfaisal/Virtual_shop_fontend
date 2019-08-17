@@ -7,7 +7,7 @@ import Rating from './Rating';
 import Color from './Color';
 import ReactHtmlParser from 'react-html-parser';
 
-const Details = ({title,price,description,shop}) => {
+const Details = ({_id,title,price,description,shop}) => {
   const [rating] = useState(4)
   const des = ReactHtmlParser(description)
   return (
@@ -19,6 +19,7 @@ const Details = ({title,price,description,shop}) => {
       <div className="p-3 my-3" style={{minHeight: '300px'}}>
         {des}
       </div>
+      <Footer id={_id}/>
     </div>
   )
 }

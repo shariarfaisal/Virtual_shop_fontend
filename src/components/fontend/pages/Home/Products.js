@@ -1,22 +1,21 @@
 import React from 'react'
 import styled from 'styled-components';
-import ProductItem from './ProductItem'
+import ProductItem from './ProductItem';
+import Filter from './Filter';
+import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton'
 
 const Products = ({products}) => {
   return (
     <BorderDisplayStyle id="product-display" className="col-12 col-md-10 mx-auto">
-      <div className="py-2 mb-2 d-flex bg-light">
-        <div className="input-group input-group-sm ml-auto" style={{width: '200px'}}>
-          <input type="text" placeholder="search" className="form-control" />
-          <div className="input-group-append">
-            <button type="submit" className="btn btn-secondary" name="button">Search</button>
-          </div>
-        </div>
-      </div>
+        <Filter />
         <div className="card-columns pb-5">
           {
             products.map((i,key) => <ProductItem  key={key} {...i}/>)
           }
+        </div>
+        <div className="my-3 text-center">
+          <Button variant="contained" className="mx-auto px-3">more</Button>
         </div>
     </BorderDisplayStyle>
   )

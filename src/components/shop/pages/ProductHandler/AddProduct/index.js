@@ -1,10 +1,13 @@
-import React,{useState} from 'react'
+import React,{useState,useContext,useEffect} from 'react'
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import CreateProduct from './CreateProduct';
+import {ShopContext} from '../../../../context/ShopContext'
 
 const AddProduct = (props) => {
+  const context = useContext(ShopContext);
   const [isProductAdd,setIsProductAdd] = useState(false);
+
   return (
     !isProductAdd?<div className="col-12 p-0" style={{borderBottom: '1px solid rgb(235, 235, 235)'}}>
       <div  className="card bg-light border-0 rounded-0" style={{
@@ -19,7 +22,7 @@ const AddProduct = (props) => {
           </div>
         </div>
       </div>
-    </div>: <CreateProduct context={{...props.context}} isProductAdd={isProductAdd} setIsProductAdd={setIsProductAdd} />
+    </div>: <CreateProduct context={context} isProductAdd={isProductAdd} setIsProductAdd={setIsProductAdd} />
   )
 }
 

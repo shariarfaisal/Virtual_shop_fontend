@@ -1,22 +1,23 @@
-import React,{useContext} from 'react';
+import React,{useContext} from 'react'
 import {ThemeContext} from '../context/ThemeContext'
 // import {Link} from 'react-router-dom';
 import Search from './Search'
-import styled from 'styled-components';
+import styled from 'styled-components'
 import MaterialNav from './MaterialNav'
-import Nav from './Nav'
 import MaterialSearch from './MaterialSearch'
+import Sidebar from './Sidebar'
+
 export default function Header(props) {
   const theme = useContext(ThemeContext)
   return (
     <NavStyled className="navbar navbar-dark bg-dark navbar-expand-lg uk-sticky p-0" uk-sticky="top:100; animation: uk-animation-slide-top; bottom: #sticky-on-scroll-up">
-      <div className="container">
-        <h1 className="navbar-brand" style={{color: theme.color.danger}}>SHOPMATE</h1>
-        <Nav />
+      <div className="container" style={{minHeight: '70px'}}>
+        <Sidebar />
+        <h1 className="navbar-brand my-auto"><a href="/"  style={{color: theme.color.danger,textDecoration: 'none'}}>SHOPMATE</a></h1>
         <MaterialSearch />
       </div>
       </NavStyled>
-  );
+  )
 }
 
 

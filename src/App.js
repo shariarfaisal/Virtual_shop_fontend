@@ -3,6 +3,7 @@ import Home from './components/fontend/pages/Home/index';
 import Brands from './components/fontend/pages/Brands/index';
 import BrandProfile from './components/fontend/pages/BrandProfile/index';
 import Profile from './components/fontend/pages/Profile/index';
+import Favourits from './components/fontend/pages/Favourits/index';
 import Register from './components/fontend/pages/Register/index';
 import Login from './components/fontend/pages/Login/index';
 import ProductDetails from './components/fontend/pages/ProductDetails/index'
@@ -29,6 +30,10 @@ const routes = [
   {
     path: '/brand/:id',
     component: BrandProfile
+  },
+  {
+    path: '/favourits',
+    component: Favourits
   },
   {
     path: '/brand/:id/:categoryId',

@@ -30,7 +30,7 @@ const MaterialSearch = (props) => {
   const classes = useStyles();
 
   return (
-    <Paper className={classes.root}>
+    <Paper className={classes.root} style={{marginLeft: 'auto'}}>
       <InputBase
         className={classes.input}
         placeholder="Search Google Maps"

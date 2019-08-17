@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import Axios from 'axios';
 import link from '../../../link'
-
+import {setShopToken} from '../../../../utils/setToken';
 
 const Login = (props) => {
   const [email,setEmail] = useState('');
@@ -21,8 +21,8 @@ useEffect(() => {
     if(!login.data.error){
       setEmail('');setPassword('')
       localStorage.setItem('virtual_shopkeeper_token',login.data);
+      setShopToken(login.data);
       const redirect = props.history.push('/shop')
-      // window.location = '/shop'
     }else{
       setIsError(true);
     }
