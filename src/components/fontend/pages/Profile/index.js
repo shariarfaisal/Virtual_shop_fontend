@@ -13,7 +13,6 @@ const Profile = (props) => {
 
   useEffect(()=> {
     if(context.profile){
-      console.log(context.profile);
       setInfo(context.profile);
       setFollow(context.profile.follow);
     }

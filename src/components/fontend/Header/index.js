@@ -10,7 +10,7 @@ import Sidebar from './Sidebar'
 export default function Header(props) {
   const theme = useContext(ThemeContext)
   return (
-    <NavStyled className="navbar navbar-dark bg-dark navbar-expand-lg uk-sticky p-0" uk-sticky="top:100; animation: uk-animation-slide-top; bottom: #sticky-on-scroll-up">
+    <NavStyled className="navbar fixed-top navbar-dark bg-dark navbar-expand-lg p-0" uk-sticky="top:100; animation: uk-animation-slide-top; bottom: #sticky-on-scroll-up">
       <div className="container" style={{minHeight: '70px'}}>
         <Sidebar />
         <h1 className="navbar-brand my-auto"><a href="/"  style={{color: theme.color.danger,textDecoration: 'none'}}>SHOPMATE</a></h1>

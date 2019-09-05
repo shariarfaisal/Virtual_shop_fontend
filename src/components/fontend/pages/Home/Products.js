@@ -1,14 +1,13 @@
 import React from 'react'
 import styled from 'styled-components';
 import ProductItem from './ProductItem';
-import Filter from './Filter';
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 
 const Products = ({products,profile}) => {
   return (
-    <BorderDisplayStyle id="product-display" className="col-12 col-md-10 mx-auto">
-        <Filter />
+    <BorderDisplayStyle id="product-display" className="container">
+      <div className="col-12">
         <div className="card-columns pb-5">
           {
             products.map((i,key) => <ProductItem  key={key} {...i} favourite={profile.favourite}/>)
@@ -17,6 +16,7 @@ const Products = ({products,profile}) => {
         <div className="my-3 text-center">
           <Button variant="contained" className="mx-auto px-3">more</Button>
         </div>
+      </div>
     </BorderDisplayStyle>
   )
 }

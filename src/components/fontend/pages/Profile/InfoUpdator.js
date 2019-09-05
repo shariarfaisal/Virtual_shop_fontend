@@ -5,7 +5,6 @@ import link from '../../../link';
 const getUpdate = async (data,setIsUpdated) => {
   const update = await Axios.put(`${link}/api/customar`,data);
   if(update.data){
-    console.log(update.data);
     setIsUpdated(true)
   }
 }

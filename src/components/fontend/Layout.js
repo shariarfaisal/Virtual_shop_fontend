@@ -19,7 +19,7 @@ const Layout = ({history,children}) => {
         <div id="top">
           <Header />
         </div>
-        <div id="middle" className="p-3" style={{background: 'rgba(243, 243, 243, 0.9)',minHeight: '70vh'}}>
+        <div id="middle" className="p-3" style={{background: 'rgba(243, 243, 243, 0.9)',minHeight: '70vh',marginTop: '70px'}}>
           {children}
         </div>
         <div id="bottom">

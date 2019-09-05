@@ -5,13 +5,15 @@ import Products from './Products'
 import Featured from './Featured'
 import Trand from './Trand';
 import DataHoc from '../DataHoc'
+import BrandsDisplay from './BrandsDisplay';
 
 
-const Home = ({products,profile}) => {
+const Home = ({products,profile,brands}) => {
 
   return (
       <Layout>
         <div id="content" className="row">
+          <BrandsDisplay brands={brands} follows={profile.follow}/>
           <Products products={products} profile={profile}/>
           <Trand products={products.slice(0,3)}/>
           <Featured />

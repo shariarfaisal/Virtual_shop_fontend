@@ -1,5 +1,6 @@
 import React from 'react';
 import Home from './components/fontend/pages/Home/index';
+import Search from './components/fontend/pages/Search/index';
 import Brands from './components/fontend/pages/Brands/index';
 import BrandProfile from './components/fontend/pages/BrandProfile/index';
 import Profile from './components/fontend/pages/Profile/index';
@@ -22,6 +23,10 @@ const routes = [
   {
     path: '/',
     component: Home
+  },
+  {
+    path: '/search/:search',
+    component: Search
   },
   {
     path: '/brands',

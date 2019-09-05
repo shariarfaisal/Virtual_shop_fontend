@@ -1,7 +1,7 @@
 import React,{useState,Fragment,useContext,useEffect} from 'react'
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
-import Icon from '@material-ui/core/Icon'
+import Favorite from '@material-ui/icons/Favorite'
 import styled from 'styled-components';
 import {ThemeContext} from '../../context/ThemeContext'
 import link from '../../../link';
@@ -36,7 +36,7 @@ const ProductItem = ({_id,title,time,shop,description,category,price,image}) => 
           <div className="item-footer d-flex">
             <div className="w-50 ml-2 mt-2">
               <IconButton onClick={getFavourite} style={{color: isFavourite ? 'rgb(245,0,87)' : ''}}>
-                <Icon>favorite</Icon>
+                <Favorite />
               </IconButton>
               <small style={{display: 'block',fontSize: '12px'}} className="text-muted">add to favourite</small>
             </div>

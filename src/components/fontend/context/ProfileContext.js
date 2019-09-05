@@ -6,8 +6,15 @@ import Axios from 'axios';
 export const ProfileContext = createContext();
 
 const getProfile = async (setProfile) => {
-  const pro = await Axios.get(`${link}/api/customar/me`);
-  setProfile(pro.data)
+  try {
+    const pro = await Axios.get(`${link}/api/customar/me`);
+    setProfile(pro.data)
+  } catch (e) {
+    if(e.message.includes('400')){
+      // window.location = '/login'
+    }
+    console.log(e);
+  }
 }
 
 const ProfileContextProvider = ({children}) => {

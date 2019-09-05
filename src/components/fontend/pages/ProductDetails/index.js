@@ -1,30 +1,16 @@
-import React,{useState,useEffect} from 'react'
+import React from 'react'
 import Layout from '../../Layout'
 import Details from './Details'
 import ProductImage from './ProductImage';
 import ProductRreview from './ProductRreview';
 import AddReview from './AddReview';
 import AlsoLike from './AlsoLike';
-import Axios from 'axios';
-import link from '../../../link';
+import ProductDetailsHoc from './ProductDetailsHoc'
 
-const getProduct = async (id,setProduct) => {
-  const pro = await Axios.get(`${link}/api/product/${id}`);
-  setProduct(pro.data);
-  console.log(pro.data);
-}
-
-
-const ProductDetails = ({match}) => {
-  // const [shortDisplay,setShortDisplay] = useState(['img4.jpg','img5.jpg','img6.jpg'])
-  const [product,setProduct] = useState(null);
-
-  useEffect(() => {
-    getProduct(match.params.id,setProduct);
-  },[])
+const ProductDetails = ({product}) => {
   return (
     <Layout>
-      {product && <div id="product-details" className="row">
+      <div id="product-details" className="row">
         <div id="pic-with-details" className="col-12">
           <div className="card border-0">
             <div className="card-body row">
@@ -42,10 +28,10 @@ const ProductDetails = ({match}) => {
             </div>
           </div>
         </div>
-        <AlsoLike shopId={product.shop._id}/>
-      </div>}
+        <AlsoLike shopId={product.shop._id} catId={product.category._id}/>
+      </div>
     </Layout>
   )
 }
 
-export default ProductDetails
+export default ProductDetailsHoc(ProductDetails)

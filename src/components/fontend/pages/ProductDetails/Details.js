@@ -16,7 +16,7 @@ const Details = ({_id,title,price,description,shop}) => {
       <Rating rating={rating} />
       <h2>{title}</h2>
       <div><strong>Price: </strong>${price}</div>
-      <div className="p-3 my-3" style={{minHeight: '300px'}}>
+      <div className="p-3 my-3" style={{minHeight: '100px'}}>
         {des}
       </div>
       <Footer id={_id}/>

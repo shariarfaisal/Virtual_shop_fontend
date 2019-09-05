@@ -40,7 +40,7 @@ const BrandInfo = ({image,name,email,_id,about}) => {
           <h4 className="m-0">{name}</h4>
           <p className="m-0">{email}</p>
         </div>
-        <button onClick={e => followHandler(_id,setIsFollow,isFollow)} type="button" className="btn btn-primary ml-auto py-0 rounded-0 my-auto" style={{width: '100px',height: '30px',fontWeight: 'bold'}}>{isFollow? 'unfollow' : 'follow'}</button>
+        <button onClick={e => followHandler(_id,setIsFollow,isFollow)} type="button" className={`btn ${isFollow? 'btn-light text-dark' : 'btn-info text-light'} ml-auto py-0 rounded-0 my-auto`} style={{width: '100px',height: '30px',fontWeight: 'bold'}}>{isFollow? 'unfollow' : 'follow'}</button>
         <DropdownStyle className=" my-auto dropdown">
           <Button id="brand-more"  className="mx-2 text-muted dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" style={{width: '70px',height: '30px',fontSize: '12px'}}>more</Button>
           <div  className="dropdown-menu" aria-labelledby="brand-more">

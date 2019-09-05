@@ -7,6 +7,7 @@ import {ThemeContext} from '../../context/ThemeContext'
 import link from '../../../link';
 import {Link} from 'react-router-dom';
 import Axios from 'axios';
+import Favorite from '@material-ui/icons/Favorite'
 
 const Brand = ({name,id}) => (
   <div className="brand">
@@ -43,7 +44,7 @@ const ProductItem = ({_id,title,time,shop,description,category,price,image,favou
           <div className="item-footer d-flex">
             <div className="w-50 ml-2 mt-2">
               <IconButton onClick={getFavourite} style={{color: isFavourite ? 'rgb(245,0,87)' : ''}}>
-                <Icon>favorite</Icon>
+                <Favorite />
               </IconButton>
               <small style={{display: 'block',fontSize: '12px'}} className="text-muted">add to favourite</small>
             </div>

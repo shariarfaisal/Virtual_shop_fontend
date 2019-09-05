@@ -6,8 +6,7 @@ const getLogin = async (data,history,setIsLogged) => {
   try {
     const log = await Axios.post(`${link}/api/customar/login`,data);
     localStorage.setItem('virtual_customar_token',log.data)
-    // history.push('/');
-    window.location = '/'
+    history.push('/');
   } catch (e) {
     setIsLogged(false)
   }
