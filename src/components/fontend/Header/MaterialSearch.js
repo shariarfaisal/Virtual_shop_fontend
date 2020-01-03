@@ -27,6 +27,19 @@ const useStyles = makeStyles({
     }
   },
 });
+
+const saveSearch = (item) => {
+  const obj = {searches: []}
+  if(!localStorage.getItem('virtual_search')) localStorage.setItem('virtual_search',JSON.stringify(obj))
+  let searchHistory = JSON.parse(localStorage.getItem('virtual_search'));
+  const {searches} = searchHistory;
+  if(!searches.find(i => i == item)){
+    searches.push(item);
+  }
+  localStorage.setItem('virtual_search',JSON.stringify(searchHistory))
+}
+
+
 const MaterialSearch = (props) => {
   const classes = useStyles();
   const [search,setSearch] = useState(props.match.params.search ? props.match.params.search : '')
@@ -34,6 +47,7 @@ const MaterialSearch = (props) => {
   const submitHandler = e => {
     e.preventDefault();
     if(search !== ''){
+      saveSearch(search)
       props.history.push(`/search/${search}`)
     }
   }

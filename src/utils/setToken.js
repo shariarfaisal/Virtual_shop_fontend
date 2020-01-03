@@ -12,6 +12,9 @@ export const setShopToken = (token) => {
 export const setCustomarToken = (token) => {
   if(token) {
     axios.defaults.headers.common['virtual_customar_token'] = token
+    if(localStorage.getItem('virtual_search')){
+      axios.defaults.headers.common['virtual_search'] = localStorage.getItem('virtual_search')
+    }  
   }
   else{
     axios.defaults.headers.common['virtual_customar_token'] = ''

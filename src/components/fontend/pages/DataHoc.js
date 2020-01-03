@@ -22,7 +22,7 @@ const getMe = async (setProfile) => {
     setProfile(profile.data)
   } catch (e) {
     console.log(e);
-    
+
   }
 }
 

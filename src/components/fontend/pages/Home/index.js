@@ -15,7 +15,7 @@ const Home = ({products,profile,brands}) => {
         <div id="content" className="row">
           <BrandsDisplay brands={brands} follows={profile.follow}/>
           <Products products={products} profile={profile}/>
-          <Trand products={products.slice(0,3)}/>
+          {/*<Trand products={products.slice(0,3)}/>*/}
           <Featured />
         </div>
       </Layout>

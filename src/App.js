@@ -1,13 +1,5 @@
 import React from 'react';
-import Home from './components/fontend/pages/Home/index';
-import Search from './components/fontend/pages/Search/index';
-import Brands from './components/fontend/pages/Brands/index';
-import BrandProfile from './components/fontend/pages/BrandProfile/index';
-import Profile from './components/fontend/pages/Profile/index';
-import Favourits from './components/fontend/pages/Favourits/index';
-import Register from './components/fontend/pages/Register/index';
-import Login from './components/fontend/pages/Login/index';
-import ProductDetails from './components/fontend/pages/ProductDetails/index'
+import fontendRoutes from './components/fontend/routes'
 import ThemeContextProvider from './components/fontend/context/ThemeContext';
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 import AdminHome from './components/backend/pages/Home/index';
@@ -20,70 +12,13 @@ import ShopContextProvider from './components/context/ShopContext';
 import ProfileContextProvider from './components/fontend/context/ProfileContext';
 
 const routes = [
-  {
-    path: '/',
-    component: Home
-  },
-  {
-    path: '/search/:search',
-    component: Search
-  },
-  {
-    path: '/brands',
-    component: Brands
-  },
-  {
-    path: '/brand/:brandId',
-    component: BrandProfile
-  },
-  {
-    path: '/favourits',
-    component: Favourits
-  },
-  {
-    path: '/brand/:brandId/:catId',
-    component: BrandProfile
-  },
-  {
-    path: '/profile',
-    component: Profile
-  },
-  {
-    path: '/product/:id',
-    component: ProductDetails
-  },
-  {
-    path: '/register',
-    component: Register
-  },
-  {
-    path: '/login',
-    component: Login
-  },
-  {
-    path: '/admin',
-    component: AdminHome
-  },
-  {
-    path: '/shop',
-    component: ShopHome
-  },
-  {
-    path: '/shop/products/:category',
-    component: ShopHome
-  },
-  {
-    path: '/shop/register',
-    component: ShopRegister
-  },
-  {
-    path: '/shop/login',
-    component: ShopLogin
-  },
-  {
-    path: '/shop/profile',
-    component: ShopProfile
-  }
+  ...fontendRoutes,
+  {path: '/admin',component: AdminHome},
+  {path: '/shop',component: ShopHome},
+  {path: '/shop/products/:category',component: ShopHome},
+  {path: '/shop/register',component: ShopRegister},
+  {path: '/shop/login',component: ShopLogin},
+  {path: '/shop/profile',component: ShopProfile}
 ]
 
 
